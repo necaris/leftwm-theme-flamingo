@@ -28,7 +28,7 @@ fi
 
 # extra utils to make this theme a little more homey
 if [ -x "$(command -v dunst)" ]; then
-  dunst -c "${SCRIPTPATH}/dunst/config" &
+  dunst -conf "${SCRIPTPATH}/dunst/config" &
 fi
 
 #boot a polybar for each monitor

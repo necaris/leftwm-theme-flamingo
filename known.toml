@@ -1,0 +1,6 @@
+[[theme]]
+name = "Flamingo"
+repository = "https://github.com/necaris/leftwm-theme-flamingo/"
+commit = "*"
+version = "0.0.1"
+leftwm_versions = ">0.2.6"

@@ -26,12 +26,9 @@ if [ -x "$(command -v feh)" ]; then
   feh --bg-scale "${SCRIPTPATH}/background.jpg"
 fi
 
-#make sure all fonts needed are installed
-${SCRIPTPATH}/fonts/install_fonts
-
 # extra utils to make this theme a little more homey
 if [ -x "$(command -v dunst)" ]; then
-  dunst &
+  dunst -c "${SCRIPTPATH}/dunst/config" &
 fi
 
 #boot a polybar for each monitor

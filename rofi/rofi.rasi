@@ -1,162 +1,142 @@
-/* global settings and color variables */
+/* https://github.com/davatorium/rofi-themes/blob/master/User%20Themes/flamingo.rasi */
+
+/**
+ * User: keystroke3
+ * Copyright: keystroke3
+ *
+ */
+
+configuration {
+	display-drun: "";
+	display-run: "";
+	display-window: "";
+	display-ssh: "~#";
+	show-icons: true;
+	sidebar-mode: false;
+	font: "CaskaydiaCove Nerd Font 12";
+    modi: "combi";
+    combi-modi: "window,drun,run";
+}
+
 * {
-   blue:             #a6e1ff;
-   darkblue:         #B48EAD;
-   cyan:             #95e6cb;
-   lightcyan:        #B48EAD;
-   green:            #cee6ac;
-   red:              #ff6666;
-
-   dark1:            #1f2430;
-   dark2:            #292b30;
-   dark3:            #bfbab0;
-   dark4:            #bfbab0;
-
-   light1:           #e6e1cf;
-
-   background-color: @dark1;
-   border-color:     @dark2;
-   text-color:       @dark3;
-   dark-text-color:  @dark4;
-   main-color:       @blue;
-   highlight:        @light1;
-   urgent-color:     @red;
-   selected-color:   @lightcyan;
+	text-color: @foreground;
+	active-background: rgba(170, 70, 104);
+	active-foreground: @foreground;
+	normal-background: @background;
+	normal-foreground: @foreground;
+	urgent-background: #9E2A5E;
+	urgent-foreground: @foreground;
+	alternate-active-background: @background;
+	alternate-active-foreground: @foreground;
+	alternate-normal-background: @background;
+	alternate-normal-foreground: @foreground;
+	alternate-urgent-background: @background;
+	alternate-urgent-foreground: @foreground;
+	selected-active-background: #9E2A5E;
+	selected-active-foreground: @foreground;
+	selected-normal-background: rgba(170, 70, 104);
+	selected-normal-foreground: #0c0816;
+	selected-urgent-background: #9D596B;
+	selected-urgent-foreground: @foreground;
+	background-color: #0c0816;
+	background: #D03C6E30;
+	foreground: #8fc5c6;
+	spacing: 0;
 }
 
 window {
-   background-color: @background-color;
-   width: 640px;
-   padding: 10px;
-   fullscreen: false;
-   border:  2px;
-   border-radius: 0px;
-   border-color: @border-color;
+	location: center;
+	anchor: center;
+	height: 70%;
+	width: 33%;
+	orientation: vertical;
+	children: [mainbox];
+	border: 2px 2px 2px 0px;
+	border-color: @active-background;
+	hide-scrollbar: true;
 }
 
 mainbox {
-   background-color: @background-color;
-   spacing:0px;
-}
-
-message {
-   padding: 6px 10px;
-   background-color: @background-color;
-}
-
-textbox {
-   text-color: @text-color;
-   background-color:@background-color;
+	spacing: 0.2em;
+	children: [inputbar, listview];
 }
 
 listview {
-   fixed-height: true;
-   dynamic: true;
-   scrollbar: false;
-   spacing: 0px;
-   padding: 1px 0px 0px 0px;
-   margin: 0px 0px 1px 0px;
-   background: @background-color;
-}
-
-element {
-   padding: 4px 10px;
-}
-
-element normal.normal {
-   padding: 0px 15px;
-   background-color: @background-color;
-   text-color: @dark-text-color;
-}
-
-element normal.urgent {
-   background-color: @background-color;
-   text-color: @urgent-color;
-}
-
-element normal.active {
-   background-color: @background-color;
-   text-color: @main-color;
-}
-
-element selected.normal {
-    background-color: @border-color;
-    text-color:       @selected-color;
-}
-
-element selected.urgent {
-    background-color: @urgent-color;
-    text-color:       @background-color;
-}
-
-element selected.active {
-    background-color: @border-color;
-    text-color:       @green;
-}
-
-element alternate.normal {
-    background-color: @background-color;
-    text-color:       @dark-text-color;
-}
-
-element alternate.urgent {
-    background-color: @background-color;
-    text-color:       @urgent-color;
-}
-
-element alternate.active {
-    background-color: @background-color;
-    text-color:       @main-color;
-}
-
-scrollbar {
-   background-color: @background-color;
-   handle-color: @background-color;
-   handle-width: 0px;
-}
-
-mode-switcher {
-   background-color: @background-color;
-}
-
-button {
-   background-color: @background-color;
-   text-color:       @text-color;
-}
-
-button selected {
-    text-color:       @main-color;
+	spacing: 0.2em;
+	dynamic: false;
+	cycle: true;
+	padding: 0px 5px 0px 5px;
 }
 
 inputbar {
-   background-color: @background-color;
-   spacing: 0px;
-   children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
-}
-
-prompt {
-   padding:0px 10px;
-   background-color: @background-color;
-   text-color: @highlight;
+	/* border-radius: 50%; */
+	padding: 4px;
+	border-spacing: 4px 0 0 0;
+	border: 1px;
+	spacing: 8px;
+	margin: 0;
+	border-color: @foreground;
 }
 
 entry {
-   padding:0px 6px;
-   background-color:@background-color;
-   text-color:@light1;
+	padding: 2px;
 }
 
-case-indicator {
-   padding:6px 10px;
-   text-color:@main-color;
-   background-color:@background-color;
+prompt {
+	padding: 2px;
+	background-color: @foreground;
+	text-color: @background-color;
+	border: 0;
+	/* border-radius: 50%; */
 }
 
-#textbox-prompt-colon {
-	padding:0px 0px;
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @highlight;
-    background-color:@background-color;
+element {
+	padding: 8px;
+	/* border-radius: 50%; */
+}
+
+element normal.normal {
+	background-color: @normal-background;
+	text-color: @normal-foreground;
+}
+
+element normal.urgent {
+	background-color: @urgent-background;
+	text-color: @urgent-foreground;
+}
+
+element normal.active {
+	background-color: @active-background;
+	text-color: @active-foreground;
+}
+
+element selected.normal {
+	background-color: @selected-normal-background;
+	text-color: @selected-normal-foreground;
+	border-color: @active-background;
+}
+
+element selected.urgent {
+	background-color: @selected-urgent-background;
+	text-color: @selected-urgent-foreground;
+}
+
+element selected.active {
+	background-color: @selected-active-background;
+	text-color: @selected-active-foreground;
+}
+
+element alternate.normal {
+	background-color: @normal-background;
+	text-color: @normal-foreground;
+}
+
+element alternate.urgent {
+	background-color: @urgent-background;
+	text-color: @urgent-foreground;
+}
+
+element alternate.active {
+	background-color: @active-background;
+	text-color: @active-foreground;
 }

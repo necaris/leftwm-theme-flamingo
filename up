@@ -1,18 +1,21 @@
 #!/bin/bash
-export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+export SCRIPTPATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 
 #down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
-    /tmp/leftwm-theme-down
-    rm /tmp/leftwm-theme-down
+  /tmp/leftwm-theme-down
+  rm /tmp/leftwm-theme-down
 fi
 ln -s ${SCRIPTPATH}/down /tmp/leftwm-theme-down
 
 #boot compton or picom if it exists
 if [ -x "$(command -v picom)" ]; then
-  picom &> /dev/null & 
+  picom &>/dev/null &
 elif [ -x "$(command -v compton)" ]; then
-  compton &> /dev/null & 
+  compton &>/dev/null &
 fi
 
 #set the theme.toml config
@@ -30,9 +33,8 @@ fi
 
 #boot a polybar for each monitor
 cd ${SCRIPTPATH}/polybar
-polybar -m | sed s/:.*// | tac | while read -r monitor
-do 
-  monitor=$monitor polybar -c config.ini main &> /dev/null &
+polybar -m | sed s/:.*// | tac | while read -r monitor; do
+  monitor=$monitor polybar -c config.ini main &>/dev/null &
 done
 
 if [ -x "$(command -v xss-lock)" ]; then

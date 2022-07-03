@@ -37,6 +37,29 @@ polybar -m | sed s/:.*// | tac | while read -r monitor; do
   monitor=$monitor polybar -c config.ini main &>/dev/null &
 done
 
-if [ -x "$(command -v xss-lock)" ]; then
-  xss-lock i3lock-fancy-rapid 5 pixel &
+if [ -x "$(command -v xautolock)" ]; then
+  xautolock -detectsleep \
+    -time 5 \
+    -locker "i3lock-fancy-rapid 5 pixel" \
+    -notify 15 \
+    -notifier "notify-send -u critical -t 10000 -- 'LOCKING in 15 seconds'" \
+    -killtime 15 \
+    -killer "systemctl suspend-then-hibernate" &
+# TODO: investigate xidlehook:
+# #!/usr/bin/env bash
+# # Only exported variables can be used within the timer's command.
+# export PRIMARY_DISPLAY="$(xrandr | awk '/ primary/{print $1}')"
+
+# xidlehook \
+#   --not-when-fullscreen \
+#   `# Dim the screen after 60 seconds, undim if user becomes active` \
+#   --timer 60 \
+#     'xrandr --output "$PRIMARY_DISPLAY" --brightness .1' \
+#     'xrandr --output "$PRIMARY_DISPLAY" --brightness 1' \
+#   --timer 300 \
+#     'xrandr --output "$PRIMARY_DISPLAY" --brightness 1; i3lock' \
+#     '' \
+#   --timer 1800 \
+#     'systemctl suspend' \
+#     ''
 fi

@@ -2,7 +2,7 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
-echo "UnloadTheme" > $XDG_RUNTIME_DIR/leftwm/commands.pipe
+leftwm command "UnloadTheme"
 
 pkill compton 
 pkill picom 

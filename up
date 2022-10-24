@@ -4,24 +4,24 @@ export SCRIPTPATH="$(
   pwd -P
 )"
 
-#down the last running theme
+# down the last running theme
 if [ -f "/tmp/leftwm-theme-down" ]; then
   /tmp/leftwm-theme-down
   rm /tmp/leftwm-theme-down
 fi
 ln -s ${SCRIPTPATH}/down /tmp/leftwm-theme-down
 
-#boot compton or picom if it exists
+# boot compton or picom if it exists
 if [ -x "$(command -v picom)" ]; then
   picom &>/dev/null &
 elif [ -x "$(command -v compton)" ]; then
   compton &>/dev/null &
 fi
 
-#set the theme.toml config
-leftwm command "LoadTheme $SCRIPTPATH/theme.toml"
+# set the theme.ron command
+leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 
-#set background
+# set background
 if [ -x "$(command -v feh)" ]; then
   feh --bg-fill "${SCRIPTPATH}/background.jpg"
 fi
@@ -31,7 +31,7 @@ if [ -x "$(command -v dunst)" ]; then
   dunst -conf "${SCRIPTPATH}/dunst/config" &
 fi
 
-#boot a polybar for each monitor
+# boot a polybar for each monitor
 cd ${SCRIPTPATH}/polybar
 polybar -m | sed s/:.*// | tac | while read -r monitor; do
   monitor=$monitor polybar -c config.ini main &>/dev/null &
@@ -46,7 +46,6 @@ if [ -x "$(command -v xautolock)" ]; then
     -killtime 15 \
     -killer "systemctl suspend-then-hibernate" &
 # TODO: investigate xidlehook:
-# #!/usr/bin/env bash
 # # Only exported variables can be used within the timer's command.
 # export PRIMARY_DISPLAY="$(xrandr | awk '/ primary/{print $1}')"
 
